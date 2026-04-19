@@ -6,8 +6,10 @@ class Game {
         this.canvas.height = CANVAS_H
         this.ctx = this.canvas.getContext("2d")
 
-        this.dino = new Dino (this.ctx, 120, 150)
-        this.dino.groundTo(this.canvas.height-150)
+        this.dino = new Dino (this.ctx, 50, 150)
+        this.dino.groundTo(this.canvas.height-75)
+
+        this.background = new Background (this.ctx)
 
         this.fps = FPS
         this.drawIntervalId = undefined
@@ -26,6 +28,7 @@ class Game {
 
     setupListeners() {
         document.addEventListener("keydown", event => this.dino.onKeyEvent(event))
+        document.addEventListener("keyup", event => this.dino.onKeyEvent(event))
     }
 
     clear() {
@@ -34,9 +37,11 @@ class Game {
 
     move() {
         this.dino.move()
+        this.background.move()
     }
 
     draw() {
+        this.background.draw()
         this.dino.draw()
     }
 
