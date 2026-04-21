@@ -9,6 +9,6 @@ const ARROW_DOWN = 40;
 const DINO_VY = 12;
 const DINO_AY = 0.4;
 
-const BACKGROUND_SPEED = -6
+const BACKGROUND_SPEED = -7
 
 

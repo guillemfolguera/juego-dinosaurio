@@ -121,6 +121,15 @@ class Dino {
         }
     }
 }
+    collidesWith(enemy) {
+    return (
+        this.x + 50 < enemy.x + enemy.w && // left
+        this.x + this.w - 80 > enemy.x && // right
+        this.y < enemy.y + enemy.h && // top
+        this.y + this.h -25 > enemy.y // bottom
+  )
+    }
+
     
 
 

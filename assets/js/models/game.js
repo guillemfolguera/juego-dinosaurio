@@ -11,8 +11,16 @@ class Game {
 
         this.background = new Background (this.ctx)
 
+        this.enemies = []
+        this.enemySpawnCounter = 0
+        this.minSpawnFrames = 50 // Codex proposal
+        this.maxSpawnFrames = 150 // Codex proposal
+        this.nextSpawnIn = this.getRandomSpawnTime()
+
         this.fps = FPS
         this.drawIntervalId = undefined
+
+        this.gameOver = false
     }
 
     start() {
@@ -22,6 +30,8 @@ class Game {
                 this.clear()
                 this.move()
                 this.draw()
+                this.addEnemy()
+                this.checkCollision()
             }, this.fps)
         }
     }
@@ -38,16 +48,46 @@ class Game {
     move() {
         this.dino.move()
         this.background.move()
+        this.enemies.forEach (enemy => enemy.move())
+        this.enemies = this.enemies.filter(enemy => enemy.x + enemy.w > 0)
     }
 
     draw() {
         this.background.draw()
         this.dino.draw()
+        this.enemies.forEach (enemy => enemy.draw())
     }
 
-    stop() {
+    addEnemy(){
+        this.enemySpawnCounter++
+        if (this.enemySpawnCounter >= this.nextSpawnIn){
+            const enemyOptions = [
+                new Stone(this.ctx, 1900, 360),
+                new Skull(this.ctx, 1900, 360)
+            ]
+            const randomIndex = Math.floor(Math.random()*enemyOptions.length)
+            const randomEnemy = enemyOptions[randomIndex]
+
+            this.enemies.push(randomEnemy)
+            this.enemySpawnCounter = 0
+            this.nextSpawnIn = this.getRandomSpawnTime()
+        }
+    }
+    getRandomSpawnTime() {
+        return Math.floor(
+            Math.random()* (this.maxSpawnFrames - this.minSpawnFrames + 1)
+        ) + this.minSpawnFrames
+    }
+    checkCollision(){
+        this.enemies.forEach(enemy => {
+            if (this.dino.collidesWith(enemy)){
+                this.stop()
+            }
+        })
+    }
+    stop(){
         clearInterval(this.drawIntervalId)
-        this.drawIntervalId = undefined
+        this.gameOver = true
     }
 
 }
