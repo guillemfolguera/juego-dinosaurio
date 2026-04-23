@@ -122,12 +122,22 @@ class Dino {
     }
 }
     collidesWith(enemy) {
-    return (
+        if(!this.isCrouching){
+        return (
         this.x + 50 < enemy.x + enemy.w && // left
         this.x + this.w - 80 > enemy.x && // right
         this.y < enemy.y + enemy.h && // top
         this.y + this.h -25 > enemy.y // bottom
-  )
+        )
+    } else {
+        return (
+        this.x + 50 < enemy.x + enemy.w && // left
+        this.x + this.w - 80 > enemy.x && // right
+        this.y +40 < enemy.y + enemy.h && // top
+        this.y + this.h -25 > enemy.y // bottom
+        )
+    }
+    
     }
 
     

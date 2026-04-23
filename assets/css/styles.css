@@ -12,3 +12,15 @@ canvas {
     border: 2px solid #222;
     background: #fff;
 }
+#container {
+    position: relative;
+    display: inline-block;
+}
+#scoring {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: black;
+    font-size: 35px;
+    z-index: 1;
+}

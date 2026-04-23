@@ -6,6 +6,7 @@ class Game {
         this.canvas.height = CANVAS_H
         this.ctx = this.canvas.getContext("2d")
 
+        this.score = new Score
         this.dino = new Dino (this.ctx, 50, 150)
         this.dino.groundTo(this.canvas.height-75)
 
@@ -13,8 +14,8 @@ class Game {
 
         this.enemies = []
         this.enemySpawnCounter = 0
-        this.minSpawnFrames = 50 // Codex proposal
-        this.maxSpawnFrames = 150 // Codex proposal
+        this.minSpawnFrames = 60
+        this.maxSpawnFrames = 150
         this.nextSpawnIn = this.getRandomSpawnTime()
 
         this.fps = FPS
@@ -24,6 +25,7 @@ class Game {
     }
 
     start() {
+        
         if (!this.drawIntervalId){
             this.setupListeners();
             this.drawIntervalId = setInterval(() => {
@@ -32,8 +34,10 @@ class Game {
                 this.draw()
                 this.addEnemy()
                 this.checkCollision()
+                this.render()
             }, this.fps)
         }
+        
     }
 
     setupListeners() {
@@ -63,7 +67,8 @@ class Game {
         if (this.enemySpawnCounter >= this.nextSpawnIn){
             const enemyOptions = [
                 new Stone(this.ctx, 1900, 360),
-                new Skull(this.ctx, 1900, 360)
+                new Skull(this.ctx, 1900, 360),
+                new Bird(this.ctx, 1900, 290),
             ]
             const randomIndex = Math.floor(Math.random()*enemyOptions.length)
             const randomEnemy = enemyOptions[randomIndex]
@@ -84,6 +89,9 @@ class Game {
                 this.stop()
             }
         })
+    }
+    render(){
+        this.score.render()
     }
     stop(){
         clearInterval(this.drawIntervalId)
