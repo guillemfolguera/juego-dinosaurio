@@ -12,9 +12,13 @@ class Score{
         if (this.count % 4 ===0){
             this.score ++
         }
-        this.scoreElement.innerText = `Scoring: ${this.score}`
+        this.scoreElement.innerText = `Score: ${this.score}`
     return
     }
+    finalScore(){
+        return this.score
+    }
+
     
 }
 

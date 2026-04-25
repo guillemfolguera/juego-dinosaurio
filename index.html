@@ -7,10 +7,25 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
-    <div id="container">
-    <div id="scoring"> 0 </div>
-    <canvas id="main-canvas"></canvas>
+    
+    <div id="game-screen">
+
+        <section id="start-screen">
+            <button id="start-button">Start Game</button>
+        </section>
+
+        <div id="container-game" class="hidden">
+            <div id="scoring"> 0 </div>
+            <canvas id="canvas"></canvas>
+        </div>
+        
+        <section id="game-over-screen" class="hidden">
+            <button id="start-over-button">Start Over</button>
+            <div id="final-scoring"> 0 </div>
+        </section>
+
     </div>
+
 
     <script src="./assets/js/constants.js"></script>
     <script src="./assets/js/models/background.js"></script>
@@ -24,3 +39,5 @@
 
 </body>
 </html>
+
+

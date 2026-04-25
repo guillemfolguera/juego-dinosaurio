@@ -21,6 +21,7 @@ class Game {
         this.fps = FPS
         this.drawIntervalId = undefined
 
+        this.finalScoring = ""
         this.gameOver = false
     }
 
@@ -96,6 +97,18 @@ class Game {
     stop(){
         clearInterval(this.drawIntervalId)
         this.gameOver = true
+
+        this.gameOverScreen()
+    }
+
+    gameOverScreen(){
+        const containerGame = document.getElementById("container-game") 
+        const gameOverScreen = document.getElementById("game-over-screen")
+        const finalScoring = document.getElementById("final-scoring")   
+
+        containerGame.classList.toggle("hidden")
+        gameOverScreen.classList.toggle("hidden")
+        finalScoring.innerText = `Final Score ${this.score.finalScore()}`
     }
 
 }

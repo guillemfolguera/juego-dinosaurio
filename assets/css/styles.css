@@ -6,15 +6,83 @@ body {
     align-items: center;
     background: #f3f3f3;
 }
+#game-screen {
+    position: relative;
+    width: 1000px;
+    height: 500px;
+}
+#start-screen {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #222;
+    background-image: url("../images/start-screen-game.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-canvas {
+}
+#start-screen.hidden {
+    display: none;
+}
+#game-over-screen {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #222;
+    background-image: url("../images/game-over-screen-game.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#game-over-screen.hidden {
+    display: none;
+}
+#start-button {
+    padding: 18px;
+    font-size: 52px;
+    border: 3px solid #722107;
+    border-radius: 12px;
+    background-color: #e0ba8c;
+    color: #722107;
+    margin-bottom: 0px;
+    margin-left: 600px;
+    font-family: "Jurassic"; serif;
+    cursor: pointer
+}
+#start-button:hover {
+    background-color: #e6ab64
+}
+#start-over-button {
+    padding: 18px;
+    font-size: 52px;
+    border: 3px solid #722107;
+    border-radius: 12px;
+    background-color: #e0ba8c;
+    color: #722107;
+    margin-top: 40px;
+    margin-right: 585px;
+    font-family: "Jurassic"; serif;
+    cursor: pointer
+}
+#start-over-button:hover {
+    background-color: #e6ab64;
+}
+#container-game.hidden {
+    display: none;
+}
+#container-game {
+    position: relative;
+    display: inline-block;
+}
+#canvas {
     display: block;
     border: 2px solid #222;
     background: #fff;
-}
-#container {
-    position: relative;
-    display: inline-block;
 }
 #scoring {
     position: absolute;
@@ -23,4 +91,20 @@ canvas {
     color: black;
     font-size: 35px;
     z-index: 1;
+    font-family: Georgia, 'Times New Roman', Times, serif, serif;
+}
+#final-scoring {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #e0ba8c;
+    font-size: 37px;
+    z-index: 1;
+    font-family: Georgia, 'Times New Roman', Times, serif, serif;
+    margin-top: 160px;
+    margin-left: 115px;
+}
+@font-face {
+    font-family: "Jurassic";
+    src: url("../fonts/Jurassic_Park.ttf") format("truetype");
 }
